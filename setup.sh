@@ -34,7 +34,7 @@ EOF
 chkconfig postgresql-9.3 on
 
 		
-yum -y install /vagrant/jive_sbs_employee-8.0.0.0.RHEL-7.x86_64.rpm
+yum -y install /vagrant/jive_sbs_employee-8.0.0.0.RHEL-6.x86_64.rpm
 
 echo "net.core.rmem_max = 16777216" >> /etc/sysctl.conf
 echo "net.core.wmem_max = 16777216" >> /etc/sysctl.conf
