@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "setup.sh"
   
   #config.vm.network "forwarded_port", guest: 80, host: 80
-  #config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
   
   #see https://github.com/dotless-de/vagrant-vbguest
   #config.vbguest.auto_update = true
