@@ -6,15 +6,12 @@
 yum -y install bash cups-libs expat fontconfig keyutils-libs krb5-libs libpng libSM libX11 libXau libXdmcp libXext libXrender ntp openssl pam sysstat wget
 
 cd /vagrant
-wget http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/
-pgdg-centos93-9.3-1.noarch.rpm
+wget http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-centos93-9.3-1.noarch.rpm
 rpm -ivh pgdg-centos93-9.3-1.noarch.rpm
 yum -y install postgresql93-server
 /etc/init.d/postgresql-9.3 initdb
 
-#https://static.jiveon.com/docconverter
-wget https://static.jiveon.com/docconverter/jive_pdf2swf-0.9.1-a_RHEL_6.x86_64.rpm
-rpm -ivh jive_pdf2swf-0.9.1-a_RHEL_6.x86_64.rpm
+
 
 echo "local all all ident" > /var/lib/pgsql/9.3/data/pg_hba.conf
 echo "host all all $(ip addr show dev eth0 | sed -nr 's/.*inet ([^ ]+).*/\1/p') md5" >> /var/lib/pgsql/9.3/data/pg_hba.conf
@@ -32,9 +29,12 @@ create database analytics owner analytics encoding 'UTF-8';
 EOF
 
 chkconfig postgresql-9.3 on
-
-		
+	
 yum -y install /vagrant/jive_sbs_employee-8.0.0.0.RHEL-6.x86_64.rpm
+
+#https://static.jiveon.com/docconverter
+wget https://static.jiveon.com/docconverter/jive_pdf2swf-0.9.1-a_RHEL_6.x86_64.rpm
+rpm -ivh jive_pdf2swf-0.9.1-a_RHEL_6.x86_64.rpm
 
 echo "net.core.rmem_max = 16777216" >> /etc/sysctl.conf
 echo "net.core.wmem_max = 16777216" >> /etc/sysctl.conf
